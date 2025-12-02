@@ -11,6 +11,9 @@
 #define LCD_COLS 0
 #define LCD_ROWS 0
 
+#define TEMP1 20
+#define TEMP2 24
+
 enum class State {
     DRONE_INSIDE,
     TAKE_OFF,
