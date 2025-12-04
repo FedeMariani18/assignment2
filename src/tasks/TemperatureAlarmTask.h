@@ -14,12 +14,19 @@ public:
     void tick();
 
 private:
-    void changeAlarmContext(AlarmState aState);
     AlarmState chooseNormalState();
+
+    void startTimeInTemp();
+    void stopTimeInTemp();
+    long elapsedTimeInTemp();
+    
     ContextAlarm* contextAlarm;
     Context* context;
     double temp;
     Button* resetBtn;
+    
+    long tempTimeStamp;
+    bool countingTime;
 };
 
 #endif 

@@ -11,6 +11,11 @@
 #define LCD_COLS 0
 #define LCD_ROWS 0
 
+#define T1 200
+#define T2 200
+#define T3 1000
+#define T4 1000
+
 #define TEMP1 20
 #define TEMP2 24
 
