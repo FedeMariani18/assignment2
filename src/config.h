@@ -38,3 +38,8 @@ enum class AlarmState {
     PRE_ALARM,
     ALARM
 };
+
+enum class Command {
+    TAKE_OFF,
+    LANDING,
+};
