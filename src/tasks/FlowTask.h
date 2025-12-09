@@ -23,10 +23,6 @@ class FlowTask: public Task {
 
         long time = 0;
         bool firstTime = true;
-        int d1 = 1; //da modificare
-        int t1 = 1;
-        int d2 = 1;
-        int t2 = 1;
 };
 
 #endif

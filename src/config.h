@@ -24,6 +24,11 @@
 #define PERIOD 50
 #define DISTANCE_PERIOD 0
 
+#define D1 1
+#define T1 1
+#define D2 1
+#define D2 1
+
 enum class State {
     DRONE_INSIDE,
     TAKE_OFF,

@@ -10,7 +10,7 @@ void FlowTask::tick() {
     switch (context.getState())
     {
         case State::DRONE_INSIDE:
-            if (present == true && contextAlarm.getAlarmState() != AlarmState::ALARM && command == Command::TAKE_OFF) {
+            if (contextAlarm.getAlarmState() != AlarmState::ALARM && command == Command::TAKE_OFF) {
                 context.setState(State::TAKE_OFF);
             }
         break;
@@ -20,11 +20,11 @@ void FlowTask::tick() {
                 context.setState(State::FORCED_CLOSING);
             }
             
-            if (distance > d1) {
+            if (distance > D1) {
                 if (firstTime) {
                     startTimer();
                     firstTime = false;
-                } else if (elapsedTime() > t1) {
+                } else if (elapsedTime() > T1) {
                     context.setState(State::DRONE_OUT);
                     firstTime = true;
                 }
@@ -34,7 +34,7 @@ void FlowTask::tick() {
         break;
 
         case State::DRONE_OUT:
-            if (command == Command::LANDING) {
+            if (present == true &&  command == Command::LANDING) {
                 context.setState(State::LANDING);
             }
         break;
@@ -44,11 +44,11 @@ void FlowTask::tick() {
                 context.setState(State::FORCED_CLOSING);
             }
 
-            if (distance < d2) {
+            if (distance < D2) {
                 if (firstTime) {
                     startTimer();
                     firstTime = false;
-                } else if (elapsedTime() > t2) {
+                } else if (elapsedTime() > T2) {
                     context.setState(State::DRONE_INSIDE);
                     firstTime = true;
                 }
@@ -58,19 +58,19 @@ void FlowTask::tick() {
         break;
 
         case State::FORCED_CLOSING:
-            if (distance > d1) {
+            if (distance > D1) {
                 if (firstTime) {
                     startTimer();
                     firstTime = false;
-                } else if (elapsedTime() > t1) {
+                } else if (elapsedTime() > T1) {
                     context.setState(State::DRONE_OUT);
                     firstTime = true;
                 }
-            } else if (distance < d2) {
+            } else if (distance < D2) {
                 if (firstTime) {
                     startTimer();
                     firstTime = false;
-                } else if (elapsedTime() > t2) {
+                } else if (elapsedTime() > T2) {
                     context.setState(State::DRONE_INSIDE);
                     firstTime = true;
                 }
