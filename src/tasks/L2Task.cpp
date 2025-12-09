@@ -1,7 +1,7 @@
 #include "L2Task.h"
 
-L2Task::L2Task(Led* led, Context& context): led(led), context(context){
-    setState(OFF);
+L2Task::L2Task(Led* led, Context& context): led(led), context(context), state(OFF){
+    
 }
 
 void L2Task::tick(){
