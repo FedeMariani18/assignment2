@@ -35,7 +35,7 @@ void setup() {
   flowtask->init(/*?????*/);
 
   Task* distanceTask = new DistanceTask(hWPlatform->getProximitySensor(), context, distanceValue);
-  distanceTask->init(DISTANCE_PERIOD);
+  distanceTask->init(DISTANCE_TASK_PERIOD);
 
   Task* doorTask = new DoorTask(hWPlatform->getMotor(), context);
   doorTask->init(/*?????*/);
