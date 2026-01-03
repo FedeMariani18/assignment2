@@ -1,17 +1,17 @@
-#define BT_PIN 0
-#define LED1_PIN 0
-#define LED2_PIN 0
-#define RED_LED_PIN 0
-#define MOTOR_PIN 0
-#define PIR_PIN 0
-#define SONAR_ECHO_PIN 0
-#define SONAR_TRIG_PIN 0
-#define SONAR_TIMEOUT 0
-#define TEMP_PIN 0
+#define BT_PIN 5
+#define LED1_PIN 2
+#define LED2_PIN 3
+#define RED_LED_PIN 4
+#define MOTOR_PIN 9
+#define PIR_PIN 6
+#define SONAR_ECHO_PIN 7
+#define SONAR_TRIG_PIN 8
+#define SONAR_TIMEOUT 1
+#define TEMP_PIN A0
 
-#define LCD_ADRR 0
-#define LCD_COLS 0
-#define LCD_ROWS 0
+#define LCD_ADRR 0x27
+#define LCD_COLS 16
+#define LCD_ROWS 2
 
 #define T1 200
 #define T2 200
@@ -37,7 +37,7 @@
 #define D1 1
 #define T1 1
 #define D2 1
-#define D2 1
+#define T2 1
 
 enum class State {
     DRONE_INSIDE,

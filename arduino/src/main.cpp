@@ -13,6 +13,7 @@
 #include "tasks/TemperatureAlarmTask.h"
 #include "tasks/TempTask.h"
 #include "tasks/FlowTask.h"
+#include "tasks/MsgManagerTask.h"
 
 
 Scheduler sched;
@@ -31,35 +32,38 @@ void setup() {
   hWPlatform = new HWPlatform();
   hWPlatform->init();
 
+  Task* msgManagerTask = new MsgManagerTask(context, contextAlarm, command, distanceValue);
+  msgManagerTask->init(MESSAGE_MANAGER_TASK_PERIOD);
+
   Task* flowtask = new FlowTask(contextAlarm, context, dronePresence, distanceValue, command);
-  flowtask->init(/*?????*/);
+  flowtask->init(FLOW_TASK_PERIOD);
 
   Task* distanceTask = new DistanceTask(hWPlatform->getProximitySensor(), context, distanceValue);
   distanceTask->init(DISTANCE_TASK_PERIOD);
 
   Task* doorTask = new DoorTask(hWPlatform->getMotor(), context);
-  doorTask->init(/*?????*/);
+  doorTask->init(DOOR_TASK_PERIOD);
 
   Task* l1Task = new L1Task(hWPlatform->getLed1(), context);
-  l1Task->init(/*?????*/);
+  l1Task->init(L1_TASK_PERIOD);
 
   Task* l2Task = new L2Task(hWPlatform->getLed2(), context);
-  l2Task->init(/*?????*/);
+  l2Task->init(L2_TASK_PERIOD);
 
   Task* l3Task = new L3Task(hWPlatform->getLed3(), contextAlarm);
-  l2Task->init(/*?????*/);
+  l2Task->init(L3_TASK_PERIOD);
 
   Task* presenceTask = new PresenceTask(hWPlatform->getPresenceSensor(), context, dronePresence);
-  presenceTask->init(/*?????*/);
+  presenceTask->init(PRESENCE_TASK_PERIOD);
 
   Task* tempTask = new TempTask(hWPlatform->getTempSensor(), contextAlarm, tempValue);
-  tempTask->init(/*?????*/);
+  tempTask->init(TEMP_TASK_PERIOD);
 
   Task* temperatureAlarmTask = new TemperatureAlarmTask(contextAlarm, context, tempValue, hWPlatform->getResetButton());
-  temperatureAlarmTask->init(/*?????*/);
+  temperatureAlarmTask->init(TEMPERATURE_ALARM_TASK_PERIOD);
 
   Task* lcdTask = new LCDTask(hWPlatform->getLcd(), context, contextAlarm);
-  lcdTask->init(/*?????*/);
+  lcdTask->init(LCD_TASK_PERIOD);
 
   sched.addTask(flowtask);
   sched.addTask(distanceTask);
