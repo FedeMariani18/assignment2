@@ -43,7 +43,7 @@ void MsgManagerTask::send(){
     MsgService.sendMsg(stringMsg);
 }
 
-Command transformMsgToCommand(Msg* msg){
+Command MsgManagerTask::transformMsgToCommand(Msg* msg){
     if(msg->getContent() == "TAKE_OFF"){
         return Command::TAKE_OFF;
     } else if(msg->getContent() == "LANDING"){

@@ -9,38 +9,55 @@ DoorTask::DoorTask(ServoMotor* motor, Context& context):
 }
 
 void DoorTask::tick(){
+    long dt = 0;
     switch (state) {
-    case CLOSE:
+    case DoorState::CLOSE:
         if(context.getState() == State::LANDING || context.getState() == State::TAKE_OFF){
-            setState(OPENING);
+            setState(DoorState::OPENING);
         }
         break;
 
-    case OPENING:
-        long dt = elapsedTimeInState();
+    case DoorState::OPENING:
+        dt = elapsedTimeInState();
         currentPos = (((float) dt)/FWD_TIME)*MAX_OPEN_DEGREE;
         motor->setPosition(currentPos);
         
         if(currentPos >= 90){
-            setState(OPEN);
+            setState(DoorState::OPEN);
         }
         break;
 
-    case OPEN:
+    case DoorState::OPEN:
         if(context.getState() == State::DRONE_INSIDE || context.getState() == State::DRONE_OUT || 
             context.getState() == State::FORCED_CLOSING){
-            setState(CLOSING);
+            setState(DoorState::CLOSING);
         }
         break;
 
-    case CLOSING:
-        long dt = elapsedTimeInState();
+    case DoorState::CLOSING:
+        dt = elapsedTimeInState();
         currentPos = (((float) dt)/FWD_TIME)*MAX_OPEN_DEGREE;
         motor->setPosition(currentPos);
         
         if(currentPos <= 0){
-            setState(CLOSE);
+            setState(DoorState::CLOSE);
         }
         break;
     }
+}
+
+void DoorTask::setState(DoorState s) {
+        state = s;
+}
+
+void DoorTask::startTimeInState() {
+
+}
+
+long DoorTask::elapsedTimeInState() {
+
+}
+
+void DoorTask::stopTimeInState() {
+
 }

@@ -16,6 +16,7 @@ public:
 private:
     void receive();
     void send();
+    Command transformMsgToCommand(Msg* msg);
 
     Context& context;
     ContextAlarm& contextAlarm;

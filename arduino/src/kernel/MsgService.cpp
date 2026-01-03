@@ -1,6 +1,8 @@
 #include "Arduino.h"
 #include "MsgService.h"
 
+void serialEvent();
+
 String content;
 
 MsgServiceClass MsgService;

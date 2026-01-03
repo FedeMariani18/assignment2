@@ -1,3 +1,6 @@
+#ifndef __CONFIG__
+#define __CONFIG__
+
 #define BT_PIN 5
 #define LED1_PIN 2
 #define LED2_PIN 3
@@ -35,9 +38,7 @@
 #define MESSAGE_MANAGER_TASK_PERIOD 250
 
 #define D1 1
-#define T1 1
 #define D2 1
-#define T2 1
 
 enum class State {
     DRONE_INSIDE,
@@ -58,3 +59,5 @@ enum class Command {
     TAKE_OFF,
     LANDING,
 };
+
+#endif

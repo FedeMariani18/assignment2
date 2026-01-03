@@ -14,7 +14,9 @@ public:
     void tick();
 
 private:
-    void setState(int state);
+    enum class DoorState {CLOSE, CLOSING, OPENING, OPEN};
+
+    void setState(DoorState s);
     void startTimeInState();
     long elapsedTimeInState();
     void stopTimeInState();
@@ -23,8 +25,8 @@ private:
     Context& context;
     
     int currentPos;
-
-    enum {CLOSE, CLOSING, OPENING, OPEN} state;
+    
+    DoorState state;
 };
 
 #endif
