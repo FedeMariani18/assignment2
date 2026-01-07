@@ -44,8 +44,6 @@ public:
     Msg* receiveMsg(Pattern& pattern);
     
     void sendMsg(const String& msg);
-
-    void blinkLED(int times, int duration);
 };
 
 extern MsgServiceClass MsgService;

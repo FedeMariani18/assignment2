@@ -3,17 +3,18 @@
 enum State { DRONE_INSIDE, TAKE_OFF, DRONE_OUT, LANDING };
 State currentState = DRONE_INSIDE;
 
-const int ledPin = LED_BUILTIN;
+const int ledPin = 6;
 
 void setup() {
   Serial.begin(115200);
   pinMode(ledPin, OUTPUT);
-  // Non serve Serial.begin(), la seriale è occupata da Java
 }
 
 void loop() {
-  receiveCommand();
-  delay(50); // piccolo delay per non saturare il ciclo
+  digitalWrite(ledPin, HIGH);
+  delay(50);
+  digitalWrite(ledPin, LOW);
+  delay(50);
 }
 
 void receiveCommand() {

@@ -21,11 +21,7 @@ Msg* MsgServiceClass::receiveMsg(){
 void MsgServiceClass::init(){
     Serial.begin(115200);
     content.reserve(256);
-    pinMode(LED1_PIN, OUTPUT);
     resetMsg();
-
-    // small startup blink to indicate service initialized
-    blinkLED(1, 100);
 }
 
 void MsgServiceClass::resetMsg(){
@@ -43,9 +39,6 @@ void serialEvent() {
     while (Serial.available()) {
         String cmd = Serial.readStringUntil('\n');
         cmd.trim();
-        //if(cmd.equals("TAKE_OFF")){
-            MsgService.blinkLED(5, 100);
-        //}
         MsgService.currentMsg->setContent(cmd);
         MsgService.msgAvailable = true; 
         content = "";     
@@ -64,13 +57,4 @@ Msg* MsgServiceClass::receiveMsg(Pattern& pattern){
     } else {
         return NULL; 
     }
-}
-
-void MsgServiceClass::blinkLED(int times, int duration) {
-  for(int i=0; i<times; i++){
-    digitalWrite(LED1_PIN, HIGH);
-    delay(duration);
-    digitalWrite(LED1_PIN, LOW);
-    delay(duration);
-  }
 }

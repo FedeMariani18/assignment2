@@ -1,6 +1,8 @@
 #ifndef __CONFIG__
 #define __CONFIG__
 
+#include <Arduino.h>
+
 #define BT_PIN 3
 #define LED1_PIN 6
 #define LED2_PIN 5
