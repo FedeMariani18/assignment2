@@ -21,11 +21,14 @@ Msg* MsgServiceClass::receiveMsg(){
 void MsgServiceClass::init(){
     Serial.begin(115200);
     content.reserve(256);
+    currentMsg = new Msg("");
     resetMsg();
 }
 
 void MsgServiceClass::resetMsg(){
-    currentMsg->setContent("");
+    if(currentMsg == NULL){
+        currentMsg->setContent("");
+    }
     msgAvailable = false;
     content = "";
 }
@@ -37,11 +40,13 @@ void MsgServiceClass::sendMsg(const String& msg){
 void serialEvent() {
     /* reading the content */
     while (Serial.available()) {
-        String cmd = Serial.readStringUntil('\n');
-        cmd.trim();
-        MsgService.currentMsg->setContent(cmd);
-        MsgService.msgAvailable = true; 
-        content = "";     
+        char ch = (char) Serial.read();
+        if (ch == '\n'){
+            MsgService.currentMsg = new Msg(content);
+            MsgService.msgAvailable = true;      
+        } else {
+            content += ch;      
+        }   
     }
 }
 

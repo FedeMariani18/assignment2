@@ -11,6 +11,7 @@ class MsgManagerTask: public Task{
 
 public:
     MsgManagerTask(Context& context, ContextAlarm& contextAlarm, Command& command, double& distance);
+    void init(int period) override;
     void tick();
 
 private:

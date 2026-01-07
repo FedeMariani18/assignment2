@@ -28,23 +28,22 @@ Command command;
 
 void blinkLED(int times, int duration) {
   for(int i=0; i<times; i++){
-    digitalWrite(LED1_PIN, HIGH);
+    digitalWrite(LED2_PIN, HIGH);
     delay(duration);
-    digitalWrite(LED1_PIN, LOW);
+    digitalWrite(LED2_PIN, LOW);
     delay(duration);
   }
 }
 
 void setup() {
-  pinMode(LED1_PIN, OUTPUT);
+  pinMode(LED2_PIN, OUTPUT);
   
   sched.init(PERIOD);
-  
   hWPlatform = new HWPlatform();
   hWPlatform->init();
 
-  /*Task* msgManagerTask = new MsgManagerTask(context, contextAlarm, command, distanceValue);
-  msgManagerTask->init(MESSAGE_MANAGER_TASK_PERIOD);*/
+  Task* msgManagerTask = new MsgManagerTask(context, contextAlarm, command, distanceValue);
+  msgManagerTask->init(MESSAGE_MANAGER_TASK_PERIOD);
   
   Task* flowtask = new FlowTask(contextAlarm, context, dronePresence, distanceValue, command);
   flowtask->init(FLOW_TASK_PERIOD);
@@ -55,14 +54,14 @@ void setup() {
   Task* doorTask = new DoorTask(hWPlatform->getMotor(), context);
   doorTask->init(DOOR_TASK_PERIOD);
 
-  /*Task* l1Task = new L1Task(hWPlatform->getLed1(), context);
-  l1Task->init(L1_TASK_PERIOD);*/
+  Task* l1Task = new L1Task(hWPlatform->getLed1(), context);
+  l1Task->init(L1_TASK_PERIOD);
 
-  Task* l2Task = new L2Task(hWPlatform->getLed2(), context);
-  l2Task->init(L2_TASK_PERIOD);
+  /*Task* l2Task = new L2Task(hWPlatform->getLed2(), context);
+  l2Task->init(L2_TASK_PERIOD);*/
 
   Task* l3Task = new L3Task(hWPlatform->getLed3(), contextAlarm);
-  l2Task->init(L3_TASK_PERIOD);
+  l3Task->init(L3_TASK_PERIOD);
 
   Task* presenceTask = new PresenceTask(hWPlatform->getPresenceSensor(), context, dronePresence);
   presenceTask->init(PRESENCE_TASK_PERIOD);
@@ -76,12 +75,12 @@ void setup() {
   Task* lcdTask = new LCDTask(hWPlatform->getLcd(), context, contextAlarm);
   lcdTask->init(LCD_TASK_PERIOD);
 
-  //sched.addTask(msgManagerTask);
+  sched.addTask(msgManagerTask);
   sched.addTask(flowtask);
   sched.addTask(distanceTask);
   sched.addTask(doorTask);  
-  //sched.addTask(l1Task);
-  sched.addTask(l2Task);
+  sched.addTask(l1Task);
+  //sched.addTask(l2Task);
   sched.addTask(l3Task);
   sched.addTask(presenceTask);
   sched.addTask(tempTask);

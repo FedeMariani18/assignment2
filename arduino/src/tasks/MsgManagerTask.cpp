@@ -2,8 +2,12 @@
 
 MsgManagerTask::MsgManagerTask(Context& context, ContextAlarm& contextAlarm, Command& command, double& distance):
     context(context), contextAlarm(contextAlarm), command(command), distance(distance){
-    MsgService.init();
 };
+
+void MsgManagerTask::init(int period){
+    Task::init(period);
+    MsgService.init();
+}
 
 void MsgManagerTask::tick(){
     receive();
