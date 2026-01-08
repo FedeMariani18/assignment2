@@ -16,6 +16,7 @@ void MsgManagerTask::tick(){
 
 void MsgManagerTask::receive(){
     if(MsgService.isMsgAvailable()) {
+        Serial.println("Messaggio ricevuto");
         Msg* msg = MsgService.receiveMsg();
         if (msg != NULL) {
             command = transformMsgToCommand(msg);

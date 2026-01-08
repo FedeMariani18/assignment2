@@ -15,7 +15,7 @@
 #define TEMP_PIN A0
 
 #define LCD_ADRR 0x27
-#define LCD_COLS 16
+#define LCD_COLS 20
 #define LCD_ROWS 2
 
 #define T1 200
@@ -43,11 +43,11 @@
 #define D2 1
 
 enum class State {
+    FORCED_CLOSING,
     DRONE_INSIDE,
     TAKE_OFF,
     DRONE_OUT,
     LANDING,
-    FORCED_CLOSING
 };
 
 enum class AlarmState {
@@ -58,9 +58,9 @@ enum class AlarmState {
 };
 
 enum class Command {
+    NONE,
     TAKE_OFF,
     LANDING,
-    NONE,
 };
 
 #endif

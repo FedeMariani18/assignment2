@@ -12,10 +12,10 @@ public:
     void tick();
 
 private:
-    double temp;
-
     TempSensor* tempSensor;
     ContextAlarm& contextAlarm;
+
+    double temp;
 };
 
 #endif

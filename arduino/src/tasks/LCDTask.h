@@ -13,9 +13,9 @@ class LCDTask: public Task{
         void tick();
 
     private:
+        LiquidCrystal_I2C* lcd;
         Context& context;
         ContextAlarm& contextAlarm;
-        LiquidCrystal_I2C* lcd;
         State lastState;
         void printString(String s);
 };

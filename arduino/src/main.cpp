@@ -26,19 +26,9 @@ bool dronePresence;
 double tempValue;
 Command command;
 
-void blinkLED(int times, int duration) {
-  for(int i=0; i<times; i++){
-    digitalWrite(LED2_PIN, HIGH);
-    delay(duration);
-    digitalWrite(LED2_PIN, LOW);
-    delay(duration);
-  }
-}
-
 void setup() {
-  pinMode(LED2_PIN, OUTPUT);
-  
   sched.init(PERIOD);
+
   hWPlatform = new HWPlatform();
   hWPlatform->init();
 
@@ -57,8 +47,8 @@ void setup() {
   Task* l1Task = new L1Task(hWPlatform->getLed1(), context);
   l1Task->init(L1_TASK_PERIOD);
 
-  /*Task* l2Task = new L2Task(hWPlatform->getLed2(), context);
-  l2Task->init(L2_TASK_PERIOD);*/
+  Task* l2Task = new L2Task(hWPlatform->getLed2(), context);
+  l2Task->init(L2_TASK_PERIOD);
 
   Task* l3Task = new L3Task(hWPlatform->getLed3(), contextAlarm);
   l3Task->init(L3_TASK_PERIOD);
@@ -80,13 +70,12 @@ void setup() {
   sched.addTask(distanceTask);
   sched.addTask(doorTask);  
   sched.addTask(l1Task);
-  //sched.addTask(l2Task);
+  sched.addTask(l2Task);
   sched.addTask(l3Task);
   sched.addTask(presenceTask);
   sched.addTask(tempTask);
   sched.addTask(temperatureAlarmTask);
   sched.addTask(lcdTask);
-  blinkLED(3, 200);
 }
 
 void loop() {

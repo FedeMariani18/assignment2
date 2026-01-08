@@ -2,7 +2,7 @@
 #include "config.h"
 
 LCDTask::LCDTask(LiquidCrystal_I2C* lcd, Context& context, ContextAlarm& contextAlarm):
-    lcd(lcd), context(context), contextAlarm(contextAlarm), lastState(State::DRONE_INSIDE){
+    lcd(lcd), context(context), contextAlarm(contextAlarm), lastState(State::FORCED_CLOSING){
 
 }
 

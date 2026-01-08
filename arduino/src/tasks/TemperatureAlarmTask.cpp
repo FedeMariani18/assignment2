@@ -58,7 +58,7 @@ void TemperatureAlarmTask::tick(){
 AlarmState TemperatureAlarmTask::chooseNormalState(){
     if(context.getState() == State::DRONE_OUT){
         return AlarmState::NORMAL_OUT;
-    } else if(context.getState() != State::DRONE_OUT){
+    } else{
         return AlarmState::NORMAL;
     }
 }

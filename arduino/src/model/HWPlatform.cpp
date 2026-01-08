@@ -19,6 +19,8 @@ HWPlatform::HWPlatform(){
   proximitySensor = new Sonar(SONAR_ECHO_PIN, SONAR_TRIG_PIN, SONAR_TIMEOUT);
   tempSensor = new TempSensorLM35(TEMP_PIN);
   lcd = new LiquidCrystal_I2C(LCD_ADRR, LCD_COLS, LCD_ROWS);
+  lcd->init();
+  lcd->backlight();
 }
 
 void HWPlatform::init(){}
