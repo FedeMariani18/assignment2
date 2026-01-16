@@ -18,8 +18,8 @@
 #define LCD_COLS 20
 #define LCD_ROWS 2
 
-#define T1 200
-#define T2 200
+#define T1 2000
+#define T2 2000
 #define T3 1000
 #define T4 1000
 
@@ -39,7 +39,7 @@
 #define LCD_TASK_PERIOD 250
 #define MESSAGE_MANAGER_TASK_PERIOD 250
 
-#define D1 0.75
+#define D1 0.25
 #define D2 0.2
 
 enum class State {

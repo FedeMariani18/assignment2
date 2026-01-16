@@ -19,7 +19,7 @@ void FlowTask::tick() {
             if (contextAlarm.getAlarmState() == AlarmState::ALARM) {
                 context.setState(State::FORCED_CLOSING);
             }
-            
+
             if (distance > D1) {
                 if (firstTime) {
                     startTimer();
@@ -34,6 +34,10 @@ void FlowTask::tick() {
         break;
 
         case State::DRONE_OUT:
+            if(!firstTime) {
+                firstTime = true;
+            }
+
             if (present == true &&  command == Command::LANDING) {
                 context.setState(State::LANDING);
             }
